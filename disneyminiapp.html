@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disney Mini App</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700;800&family=Saira+Extra+Condensed:wght@500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #bd5d38;
+      --primary-dark: #a84f30;
+      --bg: #f8f4f1;
+      --text: #343a40;
+      --card: rgba(255, 255, 255, 0.92);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Muli", sans-serif;
+      background: linear-gradient(180deg, #fff7f2 0%, #f8f4f1 100%);
+      color: var(--text);
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 28px 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-family: "Saira Extra Condensed", sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    h2, h3 {
+      font-family: "Saira Extra Condensed", sans-serif;
+      color: var(--primary-dark);
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    button, .back-link {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+    }
+
+    .back-link {
+      background: #6c757d;
+      color: white;
+      margin-bottom: 18px;
+    }
+
+    .result {
+      margin-top: 16px;
+      font-size: 1.1rem;
+      background: #fff;
+      border-left: 6px solid var(--primary);
+      padding: 16px;
+      border-radius: 14px;
+      min-height: 70px;
+    }
+
+    ul { padding-left: 20px; }
+    li { margin: 8px 0; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Disney Mini App</h1>
+  </header>
+
+  <main>
+    <a class="back-link" href="interests.html">Back to Interests</a>
+
+    <section class="card">
+      <h2>Build a Disney Day</h2>
+      <p>Click a button to generate a fun Disney snack, ride, or whole-day idea.</p>
+
+      <div class="buttons">
+        <button id="rideBtn">Pick a Ride</button>
+        <button id="snackBtn">Pick a Snack</button>
+        <button id="dayBtn">Pick My Next Magic Moment</button>
+      </div>
+
+      <div class="result" id="result">
+        Your Disney idea will show up here.
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>My Favorites</h3>
+      <ul>
+        <li>Mickey Raspberry Macarons</li>
+        <li>Churros</li>
+        <li>Bengal BBQ Steak Skewers</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const rides = [
+      "Space Mountain",
+      "Pirates of the Caribbean",
+      "Haunted Mansion",
+      "Indiana Jones Adventure",
+      "Big Thunder Mountain Railroad",
+      "Disneyland Railroad",
+      "Star Wars: Rise of the Resistance",
+      "Matterhorn",
+      "Mad Tea Party",
+      "Mickey and Minnie’s Runaway Railway"
+    ];
+
+    const snacks = [
+      "Mickey Raspberry Macarons",
+      "Churros",
+      "Bengal BBQ Steak Skewers",
+      "Dole Whip",
+      "Popcorn in a souvenir bucket",
+      "Corn Dog",
+      "Beignets",
+      "Mickey Ice Cream Bar",
+      "Monte Cristo Sandwich"
+    ];
+
+    const dayPlans = [
+  "Start with rope drop, ride two favorites, grab churros, and end with fireworks.",
+  "Do snacks first, then a few classic rides, and take a castle photo at sunset.",
+  "Spend the day exploring, ride your favorite attraction twice, and finish with dinner in the park.",
+  "Head straight to your favorite ride, grab a Dole Whip, and relax with a parade in the afternoon.",
+  "Start with coffee and Main Street shopping, hit a few rides, and watch fireworks at night.",
+  "Ride all the thrill rides first, take a snack break, then explore slower attractions in the evening.",
+  "Spend the morning in Fantasyland, enjoy lunch, then hop over to Adventureland for the afternoon.",
+  "Take it slow—people watch, snack your way through the park, and enjoy the atmosphere.",
+  "Start with a big ride, take lots of photos, grab a sweet treat, and re-ride your favorite at night.",
+  "Focus on food: try as many snacks as possible and fit in rides in between!",
+  "Do a full Disney challenge: 5 rides, 3 snacks, and end with fireworks.",
+  "Have a nostalgic day—ride only the classic attractions and enjoy the park like a kid."
+];
+
+    const result = document.getElementById("result");
+
+    function randomItem(items) {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    document.getElementById("rideBtn").addEventListener("click", () => {
+      result.textContent = `Your ride pick is: ${randomItem(rides)}.`;
+    });
+
+    document.getElementById("snackBtn").addEventListener("click", () => {
+      result.textContent = `Your snack pick is: ${randomItem(snacks)}.`;
+    });
+
+   document.getElementById("dayBtn").addEventListener("click", () => {
+  result.innerHTML = `
+    🎢 <strong>Ride:</strong> ${randomItem(rides)}<br>
+    🍦 <strong>Snack:</strong> ${randomItem(snacks)}<br>
+    ✨ <strong>Plan:</strong> ${randomItem(dayPlans)}
+  `;
+});
+
+  </script>
+</body>
+</html>
